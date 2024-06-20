@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UIElements;
+using Unity.AI.Navigation;
 public class CodePassword : MonoBehaviour
 {
     private string code = "4725";
@@ -12,6 +13,7 @@ public class CodePassword : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject codePanel;
     public GameObject successPanel;
+    public NavMeshSurface navMeshSurface;
     public void AddNumber(int number)
     {
         if (text.text.Length < 4)
@@ -29,6 +31,7 @@ public class CodePassword : MonoBehaviour
         {
             leftDoor.SetActive(false);
             rightDoor.SetActive(false);
+            navMeshSurface.BuildNavMesh();
             successPanel.SetActive(true);
             codePanel.SetActive(false);
         }

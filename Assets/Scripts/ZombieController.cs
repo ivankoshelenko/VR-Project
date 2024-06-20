@@ -102,7 +102,7 @@ public class ZombieController : MonoBehaviour
     {
         
         directionToPlayer = target.position - transform.position;
-        Debug.Log(directionToPlayer.magnitude);
+        //Debug.Log(directionToPlayer.magnitude);
         RaycastHit hitInfo;
         if (Physics.Raycast(transform.position, directionToPlayer.normalized, out hitInfo))
         {

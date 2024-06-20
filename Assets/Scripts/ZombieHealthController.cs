@@ -5,6 +5,9 @@ using UnityEngine;
 public class ZombieHealthController : MonoBehaviour
 {
     public float enemyHealth = 100;
+    public float meleeDamageCooldown = 0.5f;
+    private float _timer = 0f; 
+    private bool slashed = false;
 
     private void Start()
     {
@@ -12,12 +15,16 @@ public class ZombieHealthController : MonoBehaviour
     }
     private void GetNPCDamage(float damage)
     {
-        enemyHealth -= damage;
-        if (enemyHealth <= 0)
+        if (!slashed)
         {
-            //KillNPC();
-            Destroy(gameObject);
-            //spawner.SpawnTank();
+            slashed = true;
+            enemyHealth -= damage;
+            if (enemyHealth <= 0)
+            {
+                //KillNPC();
+                Destroy(gameObject);
+                //spawner.SpawnTank();
+            }
         }
     }
     private void OnCollisionEnter(Collision other)
@@ -32,6 +39,17 @@ public class ZombieHealthController : MonoBehaviour
         if(other.gameObject.CompareTag("Melee"))
         {
             GetNPCDamage(50);
+        }
+    }
+    private void Update()
+    {
+        if (slashed)
+        {
+            _timer += Time.deltaTime;
+            if (_timer > meleeDamageCooldown)
+            {
+                slashed = false;
+            }
         }
     }
 }

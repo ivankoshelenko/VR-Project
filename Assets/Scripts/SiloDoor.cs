@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class SiloDoor : MonoBehaviour
@@ -10,6 +11,7 @@ public class SiloDoor : MonoBehaviour
     [SerializeField]
     private GameObject RightDoor;
 
+    public NavMeshSurface navMeshSurface;
     private bool isOpen;
     void Start()
     {
@@ -27,9 +29,9 @@ public class SiloDoor : MonoBehaviour
             }
             else 
             {
+                navMeshSurface.BuildNavMesh();
                 gameObject.SetActive(false);
             }
-            //if (RightDoor.transform.position.z <= -16.27f)
 
         }
     }

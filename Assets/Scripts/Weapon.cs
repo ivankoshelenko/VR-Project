@@ -27,10 +27,6 @@ public class Weapon : MonoBehaviour
         Debug.Log(magazine.maxBullets.ToString());
         ammoCount += magazine.currentBullets;
         TrackAmmo();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        magazine.gameObject.SetActive(false);
     }
 }

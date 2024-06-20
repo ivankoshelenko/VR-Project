@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class LeverActivation : MonoBehaviour
@@ -8,6 +9,7 @@ public class LeverActivation : MonoBehaviour
     public Turn_Move fan;
     public GameObject[] windows;
     public GameObject window1;
+    public NavMeshSurface navMeshSurface;
     private bool isActivated;
 
     private void OnTriggerEnter(Collider other)
@@ -36,6 +38,7 @@ public class LeverActivation : MonoBehaviour
             window.SetActive(false);
         }
         fan.World = false;
+        navMeshSurface.BuildNavMesh();
         gameObject.SetActive(false);
     }
 }
