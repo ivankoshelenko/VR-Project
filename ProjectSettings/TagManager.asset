@@ -8,6 +8,7 @@ TagManager:
   - Melee
   - Door
   - Lever
+  - Gem
   layers:
   - Default
   - TransparentFX

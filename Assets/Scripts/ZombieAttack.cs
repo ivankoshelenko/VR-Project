@@ -9,6 +9,12 @@ public class ZombieAttack : MonoBehaviour
     public bool isOnCooldown = false;
 
     private float _timer = 0;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponentInParent<AudioSource>();
+    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -16,6 +22,7 @@ public class ZombieAttack : MonoBehaviour
         {
             if (!isOnCooldown)
             {
+                audioSource.Play();
                 isOnCooldown = true;
                 player.GetDamage(damage);
             }
@@ -28,6 +35,7 @@ public class ZombieAttack : MonoBehaviour
             _timer += Time.deltaTime;
             if (_timer > cooldownTime)
             {
+                audioSource.Stop();
                 isOnCooldown = false;
             }
         }

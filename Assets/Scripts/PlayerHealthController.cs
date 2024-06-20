@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealthController : MonoBehaviour
@@ -29,6 +30,7 @@ public class PlayerHealthController : MonoBehaviour
     public void Death() 
     {
         Debug.Log("Death");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void Heal(float health)
     {

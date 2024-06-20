@@ -12,8 +12,10 @@ public class SiloDoor : MonoBehaviour
     private GameObject RightDoor;
 
     private bool isOpen;
+    private AudioSource audioSource;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class SiloDoor : MonoBehaviour
     }
     public void GoddamnitOpenTheSiloDoor()
     {
+        audioSource.Play();
         isOpen = true;
     }
 }

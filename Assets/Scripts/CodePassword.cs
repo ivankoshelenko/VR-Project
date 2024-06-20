@@ -13,6 +13,7 @@ public class CodePassword : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject codePanel;
     public GameObject successPanel;
+    public AudioSource audioSource;
     public void AddNumber(int number)
     {
         if (text.text.Length < 4)
@@ -28,6 +29,7 @@ public class CodePassword : MonoBehaviour
     {
         if (text.text == code)
         {
+            audioSource.Play();
             leftDoor.SetActive(false);
             rightDoor.SetActive(false);
             successPanel.SetActive(true);

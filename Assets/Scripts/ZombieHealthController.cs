@@ -38,6 +38,7 @@ public class ZombieHealthController : MonoBehaviour
         }
         if(other.gameObject.CompareTag("Melee"))
         {
+            Debug.Log("slashed");
             GetNPCDamage(50);
         }
     }

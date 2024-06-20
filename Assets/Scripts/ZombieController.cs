@@ -21,12 +21,14 @@ public class ZombieController : MonoBehaviour
     private float attackDistance;
     Animator animator;
     public bool horde = false;
+    private AudioSource audioSource;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(points[currentPoint].position);
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -79,9 +81,10 @@ public class ZombieController : MonoBehaviour
         if (!inSight || directionToPlayer.magnitude > attackDistance)
         {
             currentState = State.Follow;
+
             animator.SetBool("Attacks",false);
         }
-        //LookAtTarget();
+        LookAtTarget();
     }
     private void UpdateStates()
     {
@@ -119,12 +122,13 @@ public class ZombieController : MonoBehaviour
     }
     public void LookAtTarget()
     {
-        Vector3 lookDirection = directionToPlayer;
-        lookDirection.y = 0f;
+        transform.LookAt(target.position);
+        //Vector3 lookDirection = directionToPlayer;
+        //lookDirection.y = 0f;
 
-        Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
+        //Quaternion lookRotation = Quaternion.LookRotation(lookDirection);
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * agent.angularSpeed);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * agent.angularSpeed);
     }
 
 }
