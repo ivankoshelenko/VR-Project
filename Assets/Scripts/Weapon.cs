@@ -23,10 +23,12 @@ public class Weapon : MonoBehaviour
     }
     public void InsertMagazine()
     {
-        magazine = magSocket.GetOldestInteractableSelected().transform.gameObject.GetComponent<Magazine>();
-        Debug.Log(magazine.maxBullets.ToString());
-        ammoCount += magazine.currentBullets;
-        TrackAmmo();
-        magazine.gameObject.SetActive(false);
+        if (magSocket.GetOldestInteractableSelected().transform.gameObject.TryGetComponent<Magazine>(out magazine))
+        {
+            Debug.Log(magazine.maxBullets.ToString());
+            ammoCount += magazine.currentBullets;
+            TrackAmmo();
+            magazine.gameObject.SetActive(false);
+        }
     }
 }

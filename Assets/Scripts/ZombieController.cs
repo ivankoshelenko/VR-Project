@@ -20,6 +20,7 @@ public class ZombieController : MonoBehaviour
     [SerializeField]
     private float attackDistance;
     Animator animator;
+    public bool horde = false;
 
     void Start()
     {
@@ -45,7 +46,7 @@ public class ZombieController : MonoBehaviour
         {
             currentPoint = (currentPoint + 1) % points.Length;
         }
-        if (inSight && directionToPlayer.magnitude <= maxFollowDist)
+        if (inSight && directionToPlayer.magnitude <= maxFollowDist || horde == true)
         {
             currentState = State.Follow;
             Debug.Log("ToFollow");
@@ -62,7 +63,7 @@ public class ZombieController : MonoBehaviour
         }
         else
         {
-            if (target != null && directionToPlayer.magnitude <= maxFollowDist)
+            if (target != null && directionToPlayer.magnitude <= maxFollowDist || horde == true)
             {
                 agent.SetDestination(target.position);
             }
@@ -107,8 +108,8 @@ public class ZombieController : MonoBehaviour
         {
             inSight = hitInfo.transform.gameObject == target.gameObject;
             Debug.DrawRay(transform.position, directionToPlayer.normalized);
-            if (inSight)
-                Debug.Log("player sighted");
+            //if (inSight)
+            //    Debug.Log("player sighted");
         }
     }
     public bool HasReached()
