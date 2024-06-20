@@ -37,6 +37,7 @@ public class ZombieAttack : MonoBehaviour
             {
                 audioSource.Stop();
                 isOnCooldown = false;
+                _timer = 0;
             }
         }
     }

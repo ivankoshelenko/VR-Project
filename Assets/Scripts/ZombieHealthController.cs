@@ -50,6 +50,7 @@ public class ZombieHealthController : MonoBehaviour
             if (_timer > meleeDamageCooldown)
             {
                 slashed = false;
+                _timer = 0;
             }
         }
     }

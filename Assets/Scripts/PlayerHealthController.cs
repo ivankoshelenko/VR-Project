@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerHealthController : MonoBehaviour
 {
-    public float maxHealth = 100;
-    public float currentHealth = 100;
+    public float maxHealth = 200;
+    public float currentHealth = 200;
     public Slider healthBar;
 
     void Start()
@@ -35,6 +35,8 @@ public class PlayerHealthController : MonoBehaviour
     public void Heal(float health)
     {
         currentHealth += health;
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
         healthBar.value = currentHealth;
     }
 }

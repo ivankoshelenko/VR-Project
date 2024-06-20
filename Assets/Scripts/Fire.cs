@@ -13,9 +13,13 @@ public class Fire : MonoBehaviour
     public static event Action fireBullet;
     [SerializeField]
     private Weapon weapon;
+
+    public AudioClip shotSound;
+    private AudioSource audioSource;
     private void Start()
     {
         weapon = GetComponent<Weapon>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void FireBullet()
@@ -25,8 +29,9 @@ public class Fire : MonoBehaviour
         {
             weapon.ammoCount--;
             GameObject createBullet = Instantiate(bulletPrefab, barrel.position, barrel.rotation);
+            audioSource.PlayOneShot(shotSound);
             createBullet.GetComponent<Rigidbody>().velocity = speed * barrel.forward;
-            Destroy(createBullet, 3f);     
+            Destroy(createBullet, 2f);     
         }
 
         //fireBullet.Invoke();
