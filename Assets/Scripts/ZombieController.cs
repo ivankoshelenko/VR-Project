@@ -13,7 +13,6 @@ public class ZombieController : MonoBehaviour
     private enum State {Patrol, Follow, Attack}
     [SerializeField]
     private State currentState = State.Patrol;
-    public LayerMask layer;
     Vector3 directionToPlayer;
     private bool inSight;
     [SerializeField]
@@ -106,10 +105,10 @@ public class ZombieController : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.Raycast(transform.position, directionToPlayer.normalized, out hitInfo))
         {
-            inSight = hitInfo.transform.CompareTag("Player");
+            inSight = hitInfo.transform.gameObject == target.gameObject;
             Debug.DrawRay(transform.position, directionToPlayer.normalized);
-            //if(inSight)
-            //Debug.Log("player sighted");
+            if (inSight)
+                Debug.Log("player sighted");
         }
     }
     public bool HasReached()

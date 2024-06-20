@@ -11,7 +11,6 @@ public class SiloDoor : MonoBehaviour
     [SerializeField]
     private GameObject RightDoor;
 
-    public NavMeshSurface navMeshSurface;
     private bool isOpen;
     void Start()
     {
@@ -29,7 +28,6 @@ public class SiloDoor : MonoBehaviour
             }
             else 
             {
-                navMeshSurface.BuildNavMesh();
                 gameObject.SetActive(false);
             }
 
