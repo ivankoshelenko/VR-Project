@@ -29,7 +29,7 @@ public class ZombieHealthController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("collision");
+        //Debug.Log("collision");
         if (other.gameObject.TryGetComponent<Bullet>(out var bullet))
         {
             GetNPCDamage(bullet.Damage);
